@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <meta charset="UTF-8">
+   <title>Vue.js Udemy Course</title>
+   <script src="vue.js"></script>
+ </head>
+ <body>
+   <div id="app">
+     <input type="text" v-on:input="changeTitle">
+     <h1 v-once>{{ title }}</h1>
+     <p>{{ sayHello() }} <a v-bind:href="link">JS Fiddle</a></p>
+     <hr>
+     <p v-html="finishedLink"></p>
+     <hr>
+     <button v-on:click="increase(2, $event)">CLICK ME</button>
+     <p>{{ count }}</p>
+     <p v-on:mousemove="updateCoordinates">Coordinates: {{ x }} / {{ y }}</p>
+     - <span v-on:mousemove.stop="">DEAD ZONE</span>
+     <input type="text" v-on:keyup.enter="alertMe">
+   </div>
+
+   <script type="text/javascript">
+     new Vue({
+     	el: '#app',
+       data: {
+       	title: 'Hello World!',
+        link: 'https://jsfiddle.net/smax/c4mcxu7s/',
+        finishedLink: '<a href="https://jsfiddle.net/smax/c4mcxu7s/">JS Fiddle</p>',
+        count: 0,
+        x: 0,
+        y: 0
+       },
+       methods: {
+       	changeTitle: function(event) {
+         	this.title = event.target.value;
+        },
+
+        sayHello: function() {
+          this.title = "Hello!";
+          return this.title;
+        },
+
+        increase: function(step, event){
+          this.count += step;
+        },
+
+        updateCoordinates: function(e){
+          this.x = e.clientX;
+          this.y = e.clientY;
+        },
+
+        alertMe: function(){
+          alert("You hit the enter button");
+        }
+       }
+     });
+   </script>
+ </body>
+</html>
